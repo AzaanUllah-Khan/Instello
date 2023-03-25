@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>Instello || Clone of Instagram</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            background-color: white;
+            border-bottom: 1px solid palevioletred;
+        }
+
+        .nav {
+            position: sticky;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            margin: 0 auto;
+            align-items: center;
+            height: 75px;
+        }
+
+        .nav img {
+            width: 150px;
+        }
+
+        .icons img {
+            margin-right: 5px;
+            width: 25px;
+        }
+
+        .search img {
+            width: 15px;
+            margin: 0 0 0 10px;
+        }
+
+        .search {
+            border-radius: 10px;
+            padding: 5px;
+            background-color: rgb(238, 238, 238);
+            display: flex;
+            align-items: center;
+        }
+
+        .search input {
+            border: none;
+            outline: none;
+            width: 80%;
+            height: 30px;
+            background-color: transparent;
+            font-size: 18px;
+            padding: 5px;
+            color: rgb(80, 80, 80);
+        }
+
+        .search input::placeholder {
+            font-size: 15px;
+            color: gray;
+        }
+
+        .ex1::-webkit-scrollbar {
+            background-color: rgba(245, 245, 245, 0.308);
+        }
+
+        div.ex1 {
+            width: 80%;
+            border-radius: 20px;
+            margin: 20px auto;
+            overflow-x: scroll;
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 250px;
+            height: 100%;
+            padding: 40px 10px 30px 10px;
+            background: #ffffff;
+            border-right: 1px solid #dbdbdb;
+            transition: 0.3s;
+        }
+
+        .sidebar-header {
+            width: 100%;
+            margin-bottom: 44px;
+        }
+
+
+        .sidebar button {
+            height: 60px;
+            background: transparent;
+            border: 0;
+            padding: 0;
+            font-family: inherit;
+            color: inherit;
+            cursor: pointer;
+            width: 80%;
+        }
+
+        .sidebar button>span {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: 48px;
+            padding: 0 12px;
+            border-radius: 24px;
+            line-height: 1;
+        }
+
+        .sidebar button:hover>span {
+            background: #f2f2f2;
+        }
+
+        .sidebar button:hover>span :is(i, img) {
+            scale: 1.05;
+        }
+
+        .sidebar button>span>span {
+            transition: 0.3s;
+        }
+
+        @media (width < 580px) {
+            .sidebar {
+                display: none;
+            }
+
+            .search input {
+                display: none;
+            }
+
+            .search {
+                background-color: transparent;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .end {
+                display: none;
+            }
+
+            .bottom {
+                display: none;
+            }
+        }
+
+        @media (width < 770px) {
+            .icons img {
+                display: none;
+            }
+
+            .nav {
+                justify-content: center;
+            }
+
+            .search {
+                margin-left: 20px;
+            }
+        }
+
+        .logo-icon {
+            display: none;
+            font-size: 28px;
+            height: 35px;
+            width: 51px;
+            text-align: center;
+        }
+
+        .logo-img {
+            margin-left: 14px;
+            width: 120px;
+        }
+
+        .logo-img {
+            display: none;
+        }
+
+        .logo-icon {
+            display: block;
+        }
+
+        .sidebar {
+            width: 72px;
+        }
+
+        .sidebar button {
+            width: 55px;
+        }
+
+        .sidebar button>span {
+            width: 50px;
+        }
+
+        .sidebar button>span>span {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .sidebar button i {
+            position: relative;
+            font-size: 28px;
+            transition: 0.2s;
+        }
+
+        .sidebar button img {
+            width: 28px;
+            height: 28px;
+            transition: 0.2s;
+        }
+
+        .sidebar button i>span {
+            display: grid;
+            place-items: center;
+            height: 20px;
+            padding: 0 4px;
+            border-radius: 10px;
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            border: 1px solid #ffffff;
+            background: #ff2f40;
+            color: #f9f9f9;
+            font-size: 12px;
+            font-family: BlinkMacSystemFont;
+            font-style: normal;
+        }
+
+        .sidebar button i>em {
+            display: block;
+            height: 10px;
+            width: 10px;
+            border-radius: 10px;
+            position: absolute;
+            top: 2px;
+            right: -1px;
+            border: 1px solid #ffffff;
+            background: #ff2f40;
+            color: #f9f9f9;
+            font-size: 12px;
+            font-family: BlinkMacSystemFont;
+            font-style: normal;
+        }
+
+        .sidebar button span {
+            font-size: 17px;
+        }
+
+        .sidebar>nav {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .sidebar>nav button:last-child {
+            margin-top: auto;
+        }
+
+
+        .ex1 div img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            margin-right: 10px;
+            border: 5px solid pink
+        }
+
+        .container {
+            width: 70%;
+            background-color: white;
+            border: none;
+            border-radius: 0px;
+            border: 1px solid rgb(202, 202, 202);
+            margin: 0 auto;
+            padding: 25px 10px 35px;
+            margin-bottom: 20px;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .main {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .name {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .name img {
+            width: 70px;
+            border-radius: 50%;
+            margin-right: 30px;
+        }
+
+        .name .author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author h1 {
+            font-size: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .author .div {
+            background-color: #aad4ed;
+            text-shadow: 1px 1px 8px gray;
+            color: white;
+            font-weight: bold;
+            height: 30px;
+            text-align: center;
+            width: 30px;
+            padding: 3px;
+            border-radius: 50%;
+        }
+
+        .img {
+            width: 100%;
+        }
+
+        .img img {
+            width: 100%;
+        }
+
+        /* likes */
+        .likes {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid gray;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .first {
+            display: flex;
+            align-items: center;
+        }
+
+        .first img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .first span {
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .second button {
+            background-color: white;
+            color: black;
+            padding: 10px 20px;
+            border-radius: 30px;
+            outline: none;
+            border: none;
+            transition: all 1s ease;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .second button:hover {
+            background-color: rgb(235, 235, 235);
+        }
+
+        .date,
+        .views {
+            color: gray;
+            margin-top: 10px;
+        }
+
+        .views {
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            font-size: 20px;
+            word-spacing: 3px;
+        }
+
+        @media screen and (max-width: 700px) {
+            .container {
+                width: 90%
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .setting {
+                display: none;
+            }
+
+            .name img {
+                width: 50px;
+                margin-right: 10px;
+            }
+
+            .likes img {
+                width: 30px;
+            }
+        }
+
+        .end {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            background-color: rgba(255, 192, 203, 0.233);
+        }
+
+        .top a {
+            cursor: pointer;
+            font-weight: bolder;
+            font-size: 17px;
+            color: rgb(255, 192, 224);
+            text-decoration: none;
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            background-color: rgba(230, 230, 230, 0.4);
+            position: fixed;
+            bottom: 0;
+            align-items: center;
+            left: 0;
+            padding: 10px 0;
+        }
+
+        .bottom i {
+            font-size: 30px;
+        }
+
+        .bottom img {
+            width: 40px;
+            border-radius: 50%;
+        }
+
+        @media screen and (max-width: 375px) {
+            .babar h1 {
+                font-size: 25px;
+            }
+
+            .babar p {
+                font-size: 15px;
+            }
+        }
+
+        div.bottom {
+            display: none;
+        }
+
+        @media screen and (max-width: 580px) {
+            div.bottom {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo">
+                <img src="https://1000logos.net/wp-content/uploads/2017/02/Logo-Instagram.png" alt="logo">
+            </div>
+            <div class="search">
+                <div class="search-bar">
+                    <img src="https://www.freepnglogos.com/uploads/search-png/search-icon-transparent-images-vector-16.png"
+                        alt="search icon">
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="icons">
+                <img src="https://cdn-icons-png.flaticon.com/512/5948/5948524.png" alt="home">
+                <img src="https://cdn-icons-png.flaticon.com/512/5883/5883507.png" alt="message">
+                <img src="https://cdn-icons-png.flaticon.com/512/3161/3161837.png" alt="add">
+                <img src="https://cdn-icons-png.flaticon.com/512/4406/4406266.png" alt="explore">
+                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="like">
+            </div>
+        </nav>
+    </header>
+    <aside class="sidebar" id="sideBar">
+        <header class="sidebar-header">
+            <p id="changer"
+                style="margin-left: 40px; margin-bottom: 10px; font-size: 20px; font-weight: bolder; display: none;"
+                onclick="hide()">X</p>
+            <img class="logo-img" src="https://1000logos.net/wp-content/uploads/2017/02/Logo-Instagram.png" />
+            <i class="logo-icon uil uil-instagram"></i>
+        </header>
+        <nav>
+
+            <button>
+                <span>
+                    <i class="uil uil-estate"></i>
+                    <span>Home</span>
+                </span>
+            </button>
+
+            <button>
+                <span>
+                    <i class="uil uil-search"></i>
+                    <span>Search</span>
+                </span>
+            </button>
+
+            <button>
+                <span>
+                    <i class="uil uil-compass"></i>
+                    <span>Explore</span>
+                </span>
+            </button>
+
+            <button>
+                <span>
+                    <i class="uil uil-location-arrow">
+                        <span>12</span>
+                    </i>
+                    <span>Messages</span>
+                </span>
+            </button>
+
+            <button>
+                <span>
+                    <i class="uil uil-heart">
+                        <em></em>
+                    </i>
+                    <span>Notifications</span>
+                </span>
+            </button>
+
+            <button>
+                <span>
+                    <i class="uil uil-plus-circle"> </i>
+                    <span>Create</span>
+                </span>
+            </button>
+
+            <button>
+                <span>
+                    <a href="./my-profile.html">
+                        <img src="https://pbs.twimg.com/profile_images/1438817879332425730/anYBmFZz_400x400.jpg" />
+                    </a>
+                </span>
+            </button>
+
+            <button>
+                <span>
+                    <i class="uil uil-bars"> </i>
+                    <span>More</span>
+                </span>
+            </button>
+        </nav>
+    </aside>
+    <div class="ex1">
+        <div>
+            <img
+                src="https://assets.teenvogue.com/photos/56e9ca01d06bfe7770d2bb84/master/w_320%2Cc_limit/11934743_1490988017891405_1230657705_n.jpg">
+        </div>
+        <div>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Elon_Musk_Royal_Society_%28crop2%29.jpg/1200px-Elon_Musk_Royal_Society_%28crop2%29.jpg">
+        </div>
+        <div>
+            <img
+                src="http://t2.gstatic.com/licensed-image?q=tbn:ANd9GcSPHutmK0rMBdymBS-wfMJxV3fvjAMZF0PigJw-wenz_3PbAVOzSG2XmXRtRF9FHD-3SsLzAVdPv6mtmKs">
+        </div>
+        <div>
+            <img src="https://nationaltoday.com/wp-content/uploads/2022/09/40-PewDiePie-640x514.jpg">
+        </div>
+        <div>
+            <img
+                src="https://marciatravessoni.com.br/wp-content/uploads/2022/09/zendaya_272350445_470989791066853_8963836764632250176_n.jpg">
+        </div>
+        <div>
+            <img
+                src="https://i0.wp.com/post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/03/GettyImages-1092658864_hero-1024x575.jpg?w=1155&h=1528">
+        </div>
+        <div>
+            <img
+                src="https://www.stcbarbershop.com/wp-content/uploads/2017/12/The-6-Different-Types-Of-Face-Shapes.jpg">
+        </div>
+        <div>
+            <img src="https://i.hipinpakistan.com/large/2017/06/594fa9012a193.jpg">
+        </div>
+        <div>
+            <img src="https://www.faceapp.com/static/img/content/compare/beard-example-before@3x.jpg">
+        </div>
+        <div>
+            <img
+                src="https://images.mubicdn.net/images/cast_member/2184/cache-2992-1547409411/image-w856.jpg?size=800x">
+        </div>
+        <div>
+            <img src="https://i.pinimg.com/originals/73/30/3a/73303a5f2ddd0a49f4fc8f7e2e6d51ef.jpg">
+        </div>
+        <div>
+            <img src="https://pbs.twimg.com/profile_images/1465266546083696642/v1WOh7Pn_400x400.jpg">
+        </div>
+        <div>
+            <img src="https://pbs.twimg.com/profile_images/1562753500726976514/EPSUNyR3_400x400.jpg">
+        </div>
+        <div>
+            <img src="https://pbs.twimg.com/profile_images/1438817879332425730/anYBmFZz_400x400.jpg">
+        </div>
+        <div>
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Tom_Holland_by_Gage_Skidmore.jpg/1200px-Tom_Holland_by_Gage_Skidmore.jpg">
+        </div>
+        <div>
+            <img
+                src="https://m.media-amazon.com/images/M/MV5BZGM3YjkwOGEtMTVjMy00NTBiLThhMjgtMzE4YTY2YWFlOTI1XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_FMjpg_UX1000_.jpg">
+        </div>
+    </div>
+    <div class="container">
+        <div class="main">
+            <div class="user">
+                <div class="name">
+                    <img src="https://pbs.twimg.com/profile_images/1438817879332425730/anYBmFZz_400x400.jpg"
+                        alt="Profile Pic">
+                    <div class="author">
+                        <div class="babar">
+                            <h1>Babar Azam</h1>
+                            <p>Pakistani Cricketer</p>
+                        </div>
+                        <div class="div">✓</div>
+                    </div>
+                </div>
+                <div class="setting">
+                    <h1>⋮</h1>
+                </div>
+            </div>
+            <!-- image -->
+            <div class="img">
+                <img src="https://pbs.twimg.com/media/FiOnFNvXoAMSLq1.jpg:large" alt="Content Image">
+            </div>
+            <!-- likes -->
+            <div class="likes">
+                <div class="first">
+                    <div id="heart">
+                        <img src="data:image/png;base64,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"
+                            alt="">
+                    </div>
+                    <span id="count"></span>
+                </div>
+                <div class="second">
+                    <button id="save1" onclick="saved()">Save🔖</button>
+                </div>
+            </div>
+            <!-- views -->
+            <div class="views">
+                <p>10.3 M Views</p>
+            </div>
+            <!-- description -->
+            <div class="desc">
+                Relaxing beneath beautiful blue sky...
+            </div>
+            <div class="date">
+                6 months ago
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main">
+            <div class="user">
+                <div class="name">
+                    <img src="https://yt3.googleusercontent.com/ytc/AL5GRJUUlFKrYwjjCnGkmZSLHji3O5iLKd62XENM40wN6g=s900-c-k-c0x00ffffff-no-rj"
+                    alt="Profile Pic">
+                    <div class="author">
+                        <div class="babar">
+                            <h1>Shlok Srivastra</h1>
+                            <p>Youtube Influencer</p>
+                        </div>
+                        <div class="div">✓</div>
+                    </div>
+                </div>
+                <div class="setting">
+                    <h1>⋮</h1>
+                </div>
+            </div>
+            <!-- image -->
+            <div class="img">
+                <img src="https://canbeelifestyle.com/wp-content/uploads/2021/03/Tech-burner.jpg" alt="Content Image">
+            </div>
+            <!-- likes -->
+            <div class="likes">
+                <div class="first">
+                    <div id="heart">
+                        <img src="data:image/png;base64,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"
+                            alt="">
+                    </div>
+                    <span id="count"></span>
+                </div>
+                <div class="second">
+                    <button id="save1" onclick="saved()">Save🔖</button>
+                </div>
+            </div>
+            <!-- views -->
+            <div class="views">
+                <p>10.3 M Views</p>
+            </div>
+            <!-- description -->
+            <div class="desc">
+                Kia Chal Raha h Dostoo 🔨🔨
+            </div>
+            <div class="date">
+                6 months ago
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main">
+            <div class="user">
+                <div class="name">
+                    <img src="https://pbs.twimg.com/profile_images/1562753500726976514/EPSUNyR3_400x400.jpg"
+                        alt="Profile Pic">
+                    <div class="author">
+                        <div class="babar">
+                            <h1>Virat Kohli</h1>
+                            <p>Indian Cricketer</p>
+                        </div>
+                        <div class="div">✓</div>
+                    </div>
+                </div>
+                <div class="setting">
+                    <h1>⋮</h1>
+                </div>
+            </div>
+            <!-- image -->
+            <div class="img">
+                <img src="https://i.pinimg.com/736x/4a/8a/92/4a8a92109b0fdeea5ddab0fffc5a73c3.jpg" alt="Content Image">
+            </div>
+            <!-- likes -->
+            <div class="likes">
+                <div class="first">
+                    <div id="heart">
+                        <img src="data:image/png;base64,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"
+                            alt="">
+                    </div>
+                    <span id="count"></span>
+                </div>
+                <div class="second">
+                    <button id="save1" onclick="saved()">Save🔖</button>
+                </div>
+            </div>
+            <!-- views -->
+            <div class="views">
+                <p>23.7 M Views</p>
+            </div>
+            <!-- description -->
+            <div class="desc">
+                Start Unkonown finish Unforgettable
+            </div>
+            <div class="date">
+                1 year ago
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main">
+            <div class="user">
+                <div class="name">
+                    <img src="https://pbs.twimg.com/profile_images/1438817879332425730/anYBmFZz_400x400.jpg"
+                        alt="Profile Pic">
+                    <div class="author">
+                        <div class="babar">
+                            <h1>AzaaanUllah Khan</h1>
+                            <p>CEO of Instello</p>
+                        </div>
+                        <div class="div">✓</div>
+                    </div>
+                </div>
+                <div class="setting">
+                    <h1>⋮</h1>
+                </div>
+            </div>
+            <!-- image -->
+            <div class="img">
+                <img src="./img/334075988_1233911393999368_255363877045570818_n.jpg" alt="Content Image">
+            </div>
+            <!-- likes -->
+            <div class="likes">
+                <div class="first">
+                    <div id="heart">
+                        <img src="data:image/png;base64,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"
+                            alt="">
+                    </div>
+                    <span id="count"></span>
+                </div>
+                <div class="second">
+                    <button id="save1" onclick="saved()">Save🔖</button>
+                </div>
+            </div>
+            <!-- views -->
+            <div class="views">
+                <p>10.3 M Views</p>
+            </div>
+            <!-- description -->
+            <div class="desc">
+                Recieved certification from @saylani_mass_it_training
+            </div>
+            <div class="date">
+                1 months ago
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main">
+            <div class="user">
+                <div class="name">
+                    <img src="https://yt3.googleusercontent.com/ytc/AL5GRJWfTwz_P7bmNBS3IVBx9QYZbUuI-cDT1UczxltQqg=s900-c-k-c0x00ffffff-no-rj"
+                        alt="Profile Pic">
+                    <div class="author">
+                        <div class="babar">
+                            <h1>Techno Gamerz</h1>
+                            <p>Youtuber || Gamer</p>
+                        </div>
+                        <div class="div">✓</div>
+                    </div>
+                </div>
+                <div class="setting">
+                    <h1>⋮</h1>
+                </div>
+            </div>
+            <!-- image -->
+            <div class="img">
+                <img src="https://i.ytimg.com/vi/USUHJwkTJfM/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA_hNnhKHQMHeL_TKmZHkzLyx2eXQ"
+                    alt="Content Image">
+            </div>
+            <!-- likes -->
+            <div class="likes">
+                <div class="first">
+                    <div id="heart">
+                        <img src="data:image/png;base64,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"
+                            alt="">
+                    </div>
+                    <span id="count"></span>
+                </div>
+                <div class="second">
+                    <button id="save1" onclick="saved()">Save🔖</button>
+                </div>
+            </div>
+            <!-- views -->
+            <div class="views">
+                <p>17.7 k Views</p>
+            </div>
+            <!-- description -->
+            <div class="desc">
+                New Video Out<br><a href="https://www.youtube.com/watch?v=X5DC2wrQWa4" target="_blank"
+                    style="text-decoration: none; color: palevioletred;">DO CHECK OUT !!</a>
+            </div>
+            <div class="date">
+                2 days ago
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="main">
+            <div class="user">
+                <div class="name">
+                    <img src="https://i.pinimg.com/originals/6e/a9/72/6ea9723bc79f313b93506a4138eef0df.jpg"
+                        alt="Profile Pic">
+                    <div class="author">
+                        <div class="babar">
+                            <h1>Leo Messi</h1>
+                            <p>Argentian Footballer</p>
+                        </div>
+                        <div class="div">✓</div>
+                    </div>
+                </div>
+                <div class="setting">
+                    <h1>⋮</h1>
+                </div>
+            </div>
+            <!-- image -->
+            <div class="img">
+                <img src="https://cdn.mos.cms.futurecdn.net/TEjMA863BFMGPJ4ErB3wGf.jpg" alt="Content Image">
+            </div>
+            <!-- likes -->
+            <div class="likes">
+                <div class="first">
+                    <div id="heart">
+                        <img src="data:image/png;base64,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"
+                            alt="">
+                    </div>
+                    <span id="count"></span>
+                </div>
+                <div class="second">
+                    <button id="save1" onclick="saved()">Save🔖</button>
+                </div>
+            </div>
+            <!-- views -->
+            <div class="views">
+                <p>100.5 M Views</p>
+            </div>
+            <!-- description -->
+            <div class="desc">
+                It's tough here
+            </div>
+            <div class="date">
+                8 months ago
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <a href="./index.html"> <i class="uil uil-estate"></i></a>
+        <i class="uil uil-search"></i>
+        <i class="uil uil-plus-circle"></i>
+        <i class="uil uil-bars" onclick="change()"></i>
+        <a href="./my-profile.html"><img
+                src="https://pbs.twimg.com/profile_images/1438817879332425730/anYBmFZz_400x400.jpg" /></a>
+    </div>
+    <div class="end">
+        Looks Like You Have Reached Till End <span class="top"><a href="#top">↻</a></span>
+    </div>
+    <script>
+        var click = document.getElementById("heart")
+        var count1 = document.getElementById("count")
+        var count = 0
+        click.addEventListener("click", function () {
+            count++
+            count1.textContent = count
+        })
+        function saved() {
+            alert("This post Has Been Saved")
+        }
+        function change() {
+            document.getElementById("sideBar").style.display = "block";
+            document.getElementById("changer").style.display = "block";
+        }
+        function hide() {
+            document.getElementById("sideBar").style.display = "none";
+            document.getElementById("changer").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>

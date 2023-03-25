@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <title>Instello - My Profile</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    header {
+        width: 100%;
+        position: sticky;
+        top: 0;
+        background-color: white;
+        border-bottom: 1px solid palevioletred;
+    }
+
+    .nav {
+        position: sticky;
+        width: 80%;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 auto;
+        align-items: center;
+        height: 75px;
+    }
+
+    .nav img {
+        width: 150px;
+    }
+
+    .icons img {
+        margin-right: 5px;
+        width: 25px;
+    }
+
+    .search img {
+        width: 15px;
+        margin: 0 0 0 10px;
+    }
+
+    .search {
+        border-radius: 10px;
+        padding: 5px;
+        background-color: rgb(238, 238, 238);
+        display: flex;
+        align-items: center;
+    }
+
+    .search input {
+        border: none;
+        outline: none;
+        width: 80%;
+        height: 30px;
+        background-color: transparent;
+        font-size: 18px;
+        padding: 5px;
+        color: rgb(80, 80, 80);
+    }
+
+    .search input::placeholder {
+        font-size: 15px;
+        color: gray;
+    }
+
+    .main {
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    .profile {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+    }
+
+    .profile-pic {
+        padding: 20px;
+        margin-right: 10px;
+    }
+
+    .profile-pic img {
+        border-radius: 50%;
+        width: 270px;
+    }
+
+    .about {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .name-section {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+    }
+
+    .name-section h1 {
+        font-size: 30px;
+        font-weight: lighter;
+        margin-right: 20px;
+    }
+
+    .name-section button {
+        border: 1px solid gray;
+        background-color: transparent;
+        color: gray;
+        padding: 5px;
+        height: 30px;
+    }
+
+    .stats {
+        display: flex;
+        width: 50%;
+        justify-content: space-between;
+    }
+
+    .stats span {
+        font-weight: bolder;
+    }
+
+    .desc {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+        line-height: 25px;
+    }
+
+    .desc h1 {
+        font-size: 20px;
+        font-weight: lighter;
+    }
+
+    .desc a {
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    hr {
+        width: 80%;
+        margin: 20px auto;
+    }
+
+    .statics {
+        width: 80%;
+        margin: -23px auto;
+    }
+
+    .coloumn {
+        display: flex;
+        justify-content: space-evenly;
+        font-size: 17px;
+    }
+
+    .coloumn i {
+        margin-right: 7px;
+        font-size: 20px;
+    }
+
+    .coloumn div {
+        color: rgb(146, 146, 146);
+        padding: 10px 0 0 0;
+    }
+
+    .coloumn div:nth-child(1) {
+        color: rgb(20, 20, 20);
+        font-weight: bolder;
+    }
+
+    .coloumn div:hover {
+        color: rgb(20, 20, 20);
+        font-weight: bolder;
+        border-top: 3px solid black;
+        cursor: pointer;
+    }
+
+    .activity {
+        padding: 20px 0;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        flex-direction: row;
+    }
+
+    .activity img {
+        width: 32%;
+        height: 500px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid gainsboro;
+    }
+
+    .reel {
+        width: 32%;
+        position: relative;
+        z-index: -1;
+    }
+
+    .reel img {
+        width: 100%;
+    }
+
+    .reel i {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+        font-size: 30px;
+        color: white;
+        font-weight: bolder;
+    }
+
+    .bottom {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+        background-color: rgba(230, 230, 230, 0.4);
+        position: fixed;
+        bottom: 0;
+        align-items: center;
+        left: 0;
+        padding: 10px 0;
+    }
+
+    .bottom i {
+        font-size: 30px;
+    }
+
+    .bottom img {
+        width: 40px;
+        border-radius: 50%;
+    }
+
+    @media screen and (max-width: 375px) {
+        .babar h1 {
+            font-size: 25px;
+        }
+
+        .babar p {
+            font-size: 15px;
+        }
+    }
+
+    div.bottom {
+        display: none;
+    }
+
+    @media screen and (max-width: 580px) {
+        div.bottom {
+            display: flex;
+        }
+    }
+
+    @media screen and (max-width: 700px) {
+        .container {
+            width: 90%
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        .setting {
+            display: none;
+        }
+
+        .name img {
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        .likes img {
+            width: 30px;
+        }
+    }
+
+    @media screen and (max-width: 840px) {
+        .profile-pic img {
+            width: 180px;
+        }
+
+        .name-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .name-section h1 {
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            display: none;
+        }
+
+        .stats {
+            width: 100%;
+        }
+    }
+
+    @media (width < 580px) {
+        .sidebar {
+            display: none;
+        }
+
+        .search input {
+            display: none;
+        }
+
+        .search {
+            background-color: transparent;
+        }
+
+        nav {
+            justify-content: center;
+        }
+
+        .end {
+            display: none;
+        }
+
+        .bottom {
+            display: none;
+        }
+
+        .profile-pic img {
+            width: 100px;
+        }
+
+        .stats {
+            display: none;
+        }
+
+        .row img {
+            width: 49%;
+            height: 350px;
+        }
+
+        .reel {
+            display: none;
+        }
+
+        .row1 img {
+            width: 49%;
+            height: 350px;
+        }
+
+        .last {
+            display: none;
+        }
+    }
+
+    @media (width < 525px) {
+        .name-section button {
+            display: none;
+        }
+
+        .profile-pic {
+            width: 150px;
+        }
+
+        .name-section h1 {
+            font-weight: bold;
+        }
+
+        .statics .identify {
+            display: none;
+        }
+
+        .row {
+            overflow-x: auto;
+        }
+
+        .row img {
+            width: 50%;
+        }
+
+        .reel {
+            display: block;
+        }
+
+        .reel {
+            width: 50%;
+        }
+
+        .reel img {
+            width: 100%;
+        }
+
+        .last {
+            display: block;
+        }
+
+        div.activity .row {
+            margin: 0px auto;
+            overflow-x: auto;
+            display: flex;
+            margin-bottom: 20px;
+        }
+    }
+
+    @media (width < 770px) {
+        .icons img {
+            display: none;
+        }
+
+        .nav {
+            justify-content: center;
+        }
+
+        .search {
+            margin-left: 20px;
+        }
+    }
+</style>
+
+<body>
+    <header>
+        <nav class="nav">
+            <div class="logo">
+                <a href="./index.html">
+                    <img src="https://1000logos.net/wp-content/uploads/2017/02/Logo-Instagram.png" alt="logo"></a>
+            </div>
+            <div class="search">
+                <div class="search-bar">
+                    <img src="https://www.freepnglogos.com/uploads/search-png/search-icon-transparent-images-vector-16.png"
+                        alt="search icon">
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+            <div class="icons">
+                <img src="https://cdn-icons-png.flaticon.com/512/5948/5948524.png" alt="home">
+                <img src="https://cdn-icons-png.flaticon.com/512/5883/5883507.png" alt="message">
+                <img src="https://cdn-icons-png.flaticon.com/512/3161/3161837.png" alt="add">
+                <img src="https://cdn-icons-png.flaticon.com/512/4406/4406266.png" alt="explore">
+                <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="like">
+            </div>
+        </nav>
+    </header>
+    <div class="main">
+        <div class="profile">
+            <div class="profile-pic">
+                <img src="https://pbs.twimg.com/profile_images/1438817879332425730/anYBmFZz_400x400.jpg">
+            </div>
+            <div class="about">
+                <div class="name-section">
+                    <h1>AzaanUllah Khan</h1>
+                    <button class="edit" onclick="access()">Edit Profile</button>
+                </div>
+                <div class="stats">
+                    <div class="post">
+                        <span>2,604 </span>posts
+                    </div>
+                    <div class="followers">
+                        <span>1,700 </span>followers
+                    </div>
+                    <div class="following">
+                        <span>990 </span>following
+                    </div>
+                </div>
+                <div class="desc">
+                    <div class="name">
+                        <h1>AzaanUllah</h1>
+                    </div>
+                    <div class="main-desc">
+                        Hello World!
+                        My Name is AzaanUllah khan. I am 13years old and currently Studying Web And App Course
+                    </div>
+                    <div class="website">
+                        <a href="https://github.com/AzaanUllah-Khan" target="_blank">www.azaank.com</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="statics">
+            <div class="coloumn">
+                <div class="post"><i class="uil uil-post-stamp" onclick="reverse3()"></i><span
+                        class="identify">Posts</span></div>
+                <div class="igvt"><i class="uil uil-puzzle-piece" onclick="reverse()"></i><span
+                        class="identify">IGVT</span></div>
+                <div class="saved"><i class="uil uil-bookmark-full" onclick="reverse1()"></i><span
+                        class="identify">Saved</span></div>
+                <div class="tagged"><i class="uil uil-at" onclick="reverse2()"></i><span class="identify">Tagged</span>
+                </div>
+            </div>
+            <div class="activity" id="activity2">
+                <div class="row" id="row2">
+                    <img src="https://i.pinimg.com/736x/4a/8a/92/4a8a92109b0fdeea5ddab0fffc5a73c3.jpg">
+                    <img src="https://pbs.twimg.com/media/FiOnFNvXoAMSLq1.jpg:large">
+                    <img class="reel"
+                        src="https://i.ytimg.com/vi/USUHJwkTJfM/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA_hNnhKHQMHeL_TKmZHkzLyx2eXQ">
+                </div>
+                <div class="row" id="row1">
+                    <img src="https://cdn.mos.cms.futurecdn.net/TEjMA863BFMGPJ4ErB3wGf.jpg">
+                    <img src="https://canbeelifestyle.com/wp-content/uploads/2021/03/Tech-burner.jpg">
+                    <img class="last"
+                        src="https://pbs.twimg.com/profile_images/1465266546083696642/v1WOh7Pn_400x400.jpg">
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="bottom">
+        <a href="./index.html"><i class="uil uil-estate"></i></a>
+        <i class="uil uil-search"></i>
+        <i class="uil uil-plus-circle"></i>
+        <i class="uil uil-bars" onclick="change()"></i>
+        <a href="./my-profile.html"><img
+                src="https://pbs.twimg.com/profile_images/1438817879332425730/anYBmFZz_400x400.jpg" /></a>
+    </div>
+    <script>
+        function access() {
+            alert("You May not have Access To This Account")
+        }
+        function reverse() {
+            document.getElementById("row2").style.flexDirection = "row-reverse";
+            document.getElementById("row1").style.flexDirection = "row-reverse";
+        }
+        function reverse2() {
+            document.getElementById("row2").style.flexDirection = "row";
+            document.getElementById("row1").style.flexDirection = "row-reverse";
+        }
+        function reverse1() {
+            document.getElementById("row2").style.flexDirection = "row-reverse";
+            document.getElementById("row1").style.flexDirection = "row";
+        }
+    </script>
+</body>
+
+</html>
